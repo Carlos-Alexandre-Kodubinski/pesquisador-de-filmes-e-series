@@ -1,0 +1,13 @@
+<Mypopup@Popup>:
+    id: pp
+    BoxLayout:
+        orientation: 'vertical'
+        AsyncImage: 
+            source: 'https://ilarge.lisimg.com/image/1315552/740full-inception-poster.jpg'
+        AnchorLayout:
+            anchor_x: 'center'
+            anchor_y: 'bottom'
+            size_hint: (1, .2)
+            Button:
+                text: 'Close'
+                on_press: root.dismiss()

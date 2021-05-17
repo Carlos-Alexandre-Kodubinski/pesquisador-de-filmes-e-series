@@ -1,0 +1,259 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+
+<MyCustomButton@MyButton>:
+    background_color: (150/255, 20/255, 82/255, 1)
+    size_hint_y: None
+    height: 25
+
+<ResultsSelectPage>:
+    name: 'ResultsSelectPage'
+    id: main
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        canvas:
+            Color:
+                rgb: (40/255, 35/255, 35/255)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            id: titleSection
+            spacing: 3
+            padding: [0, 10, 0, 0]
+            size_hint: (.8, .8)
+            canvas:
+                Color:
+                    rgb: (82/255, 71/255, 71/255)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            BoxLayout:
+                size_hint: (.2, 1)
+                orientation: 'vertical'
+                Label:
+                    text: 'ID'
+                    size_hint: (1, .05)
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: idBox
+            BoxLayout:
+                size_hint: (.4, 1)
+                orientation: 'vertical'    
+                Label:
+                    text: 'Title'
+                    size_hint: (1, .05)
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: titleBox
+            BoxLayout:
+                size_hint: (.2, 1)
+                orientation: 'vertical'    
+                Label:
+                    text: 'Poster'
+                    size_hint: (1, .05)
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: posterBox
+            BoxLayout:
+                size_hint: (.2, 1)
+                orientation: 'vertical'    
+                Label:
+                    text: 'Select'
+                    size_hint: (1, .05)
+                BoxLayout:
+                    orientation: 'vertical'
+                    id: selectBox
+
+<FinalResultPage>:
+    name: 'FinalResultPage'
+    BoxLayout:
+        spacing: 3
+        BoxLayout:
+            AsyncImage:
+                canvas:
+                    Color:
+                        rgb: (1, 1, 1)
+                    Rectangle:
+                        texture: self.texture
+                        size: self.width, self.height
+                        pos: self.x , self.y
+                source: 'https://mypostercollection.com/wp-content/uploads/2019/06/the-office-poster-1.jpg'
+        BoxLayout:
+            canvas:
+                Color:
+                    rgb: (40/255, 35/255, 35/255)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Label:
+                text: 'Information section'
+
+# window app
+<ImdbWidonw>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas:
+            Color:
+                rgb: (150/255, 20/255, 82/255)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        padding: 3
+        spacing: 3
+        # app top part
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (1, .15)
+            pos_hint: {'center_x': .5}
+            canvas:
+                Color:
+                    rgb: (40/255, 35/255, 35/255)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            
+            BoxLayout:
+                orientation: 'vertical'
+                # search section
+                BoxLayout:
+                    size_hit: (1, .9)
+                    # search part
+                    BoxLayout:
+                        AnchorLayout:
+                            SearchTextInput:
+                                id: titleName
+                                background_color: (150/255, 20/255, 82/255, .35)
+                                padding: [(self.width/2-len(self.hint_text*3)), self.height/4,0,0]
+                                size_hint: (.8, .5)
+                                pos_hint: {'center_x': .5}
+                                hint_text: 'Search Field'
+                                multiline: False
+                                font_color: (1, 1, 1)
+                    
+                    # Categories part
+                    BoxLayout:
+                        AnchorLayout:
+                            Button:
+                                id: btn
+                                background_color: (150/255, 20/255, 82/255, 1)
+                                size_hint: (.8, .5)
+                                text: 'Categories'
+                                on_parent: CategoryDropDown.dismiss()
+                                on_release: CategoryDropDown.open(self)
+                        DropDown:
+                            id: CategoryDropDown
+                            on_select: btn.text = '{}'.format(args[1])
+                            MyCustomButton:
+                                text: 'Action'
+                                on_press: root.get_categorie(self.text)
+                                on_press: Mypopup.open()
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Adventure'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Comedy'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Horror'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Sci-Fi'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+
+                            MyCustomButton:
+                                text: 'Romance'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Thriller'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Drama'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Mystery'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Crime'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            
+                            MyCustomButton:
+                                text: 'Animation'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+
+                            MyCustomButton:
+                                text: 'Fantasy'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            MyCustomButton:
+                                text: 'Comedy-Romance'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            MyCustomButton:
+                                text: 'Action-Comedy'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+                            MyCustomButton:
+                                text: 'Superhero'
+                                on_press: root.get_categorie(self.text)
+                                on_release: CategoryDropDown.select(self.text)
+
+                    # CheckBox part
+                    BoxLayout:
+                        BoxLayout:
+                            size_hint: (.5, 1)
+                            spacing: -70
+                            CheckBox:
+                                group: 'check'
+                                on_press: root.set_movie()
+                            Label:
+                                text: 'Movie'
+                        BoxLayout:
+                            size_hint: (.5, 1)
+                            spacing: -70
+                            CheckBox:
+                                group: 'check'
+                                on_press: root.set_series()
+                            Label:
+                                text: 'Serie'
+                # send part
+                BoxLayout:
+                    size_hint: (1, .3)
+                    Label:
+                    MyCustomButton:
+                        text: 'Send'
+                        size_hint:(.3, 1)
+                        on_press: self.send_button(titleName.text)
+                        on_release: rsp.multiple_widgets()
+                        on_release: rsp.manager.current = 'ResultsSelectPage'
+
+        # app bottom part
+        ScreenManager:
+            transition: NoTransition()
+            ResultsSelectPage:
+                id: rsp
+
+            FinalResultPage:
+
+        
+    
